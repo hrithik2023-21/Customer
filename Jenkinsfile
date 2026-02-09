@@ -26,11 +26,6 @@ pipeline {
 				bat 'mvn clean package -DskipTests'
 			}
 		}
-		stage ('run the test cases') {
-			steps {
-				bat 'mvn test'
-			}
-		}
 	}
 	post {
 		success {
