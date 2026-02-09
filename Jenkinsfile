@@ -3,7 +3,7 @@ pipeline {
 	tools {
 		maven 'Maven3'
 		jdk 'JDK'
-		git 'GITUBUNTU'
+		git 'GitUbuntu'
 	}
 	environment {
 		GIT_REPO_URL = 'https://github.com/hrithik2023-21/Customer.git'
