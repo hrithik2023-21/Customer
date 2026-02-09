@@ -5,9 +5,8 @@ pipeline {
 		jdk 'JDK'
 	}
 	environment {
-		URL = 'https://github.com/hrithik2023-21/Customer.git'
+		GIT_REPO_URL = 'https://github.com/hrithik2023-21/Customer.git'
 		BRANCH_NAME = 'customer_branch'
-		credentialsId: 'github-token'
 	}
 	options {
 		buildDiscarder(logRotator(numToKeepStr: '10'))
@@ -19,7 +18,7 @@ pipeline {
 	stages {
 		stage('compile the code') {
 			steps {
-				git branch: "&BRANCH_NAME", url: "&URL"
+				git branch: "${BRANCH_NAME}", url: "${GIT_REPO_URL}", credentialsId: 'github-token'
 			}
 		}
 		stage('build the code') {
