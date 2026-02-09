@@ -1,8 +1,9 @@
 pipeline {
-	agent any
+	agent {label 'ubuntu'}
 	tools {
 		maven 'Maven3'
 		jdk 'JDK'
+		git 'GITUBUNTU'
 	}
 	environment {
 		GIT_REPO_URL = 'https://github.com/hrithik2023-21/Customer.git'
@@ -23,7 +24,7 @@ pipeline {
 		}
 		stage('build the code') {
 			steps {
-				bat 'mvn clean package -DskipTests'
+				sh 'mvn clean package -DskipTests'
 			}
 		}
 	}
