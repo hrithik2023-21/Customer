@@ -2,27 +2,29 @@ version: '3.8'
 
 services:
 
-mysql-db:
-   image: mysql:8
-   container_name: mysql-db
-   restart: always
-   environment:
-     MYSQL_DATABASE: bala_db
-     MYSQL_ROOT_PASSWORD: Dheeraj123*
-  ports: 
-    -3307:3306
-  volumes:
-    -my-volume: /var/lib/mysql
-customer_app:
-  image: cus-container
-  dependes-on: 
-    -mysql-db
-  ports:
-    -8090:8201
-  environment:
+  mysql-db:
+    image: mysql:8
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: bala_db
+      MYSQL_ROOT_PASSWORD: Dheeraj123*
+    ports:
+      - "3307:3306"
+    volumes:
+      - my-volume:/var/lib/mysql
+
+  customer-app:
+    build: .
+    container_name: cus-container
+    depends_on:
+      - mysql-db
+    ports:
+      - "8090:8201"
+    environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/bala_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: Dheeraj123*
+
 volumes:
   my-volume:
-   
